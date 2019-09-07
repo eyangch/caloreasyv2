@@ -3,7 +3,7 @@ const fPadd = 1;
 
 function plusAmount(n){
 	var cal = Number(localStorage.getItem("cal"));
-	localStorage.setItem("cal", cal+n);
+	localStorage.setItem("cal", (cal+n).toFixed(1));
 }
 var inp;
 var out;
