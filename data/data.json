@@ -1,0 +1,26 @@
+{
+    "apple": {
+        "amount": 182,
+        "cal": 95
+    },
+    "apple juice": {
+        "amount": 248,
+        "cal": 114
+    },
+    "banana": {
+        "amount": 118,
+        "cal": 105
+    },
+    "broccoli": {
+        "amount": 44,
+        "cal": 15
+    },
+    "chicken, Kung Pao": {
+        "amount": 121,
+        "cal": 156
+    },
+    "rice": {
+        "amount": 118,
+        "cal": 152
+    }
+}

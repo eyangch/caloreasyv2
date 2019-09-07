@@ -1,0 +1,73 @@
+.fillpage{
+	height: 100vh;
+}
+.center{
+	text-align: center;
+}
+.bCenter{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.fillish{
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -60%);
+	width: 80%;
+	height: 70%;
+}
+.flexTrack{
+	display: flex;
+	flex-wrap: wrap;
+}
+.flexTrack > div{
+	border: 3px solid black;
+}
+.flexTrack > .d1{
+	width: 70%;
+	height: 70%;
+}
+.flexTrack > .d2{
+	width: 30%;
+	height: 70%;
+}
+.flexTrack > .d3{
+	width: 50%;
+	height: 30%;
+}
+.flexTrack > .dv1{
+	width: 100%;
+	height: 20%;
+}
+.flexTrack > .dv2{
+	width: 100%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.vertcenter{
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	transform: translateY(-60%);
+}
+.solid1{
+	background: white;
+}
+.grad1{
+	background: linear-gradient(to top left, Aqua, Lime);
+}
+.grad2{
+	background: linear-gradient(to top right, LightSkyBlue, LightBlue);
+}
+.adjustfont{
+	font-size: 5vw;
+}
+.divFood{
+	background-color: LightBlue;
+}
+.divFood:hover{
+	background-color: LightSkyBlue;
+}
