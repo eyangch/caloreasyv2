@@ -18,6 +18,13 @@ window.onload = function(){
 function updInp(evt){
 	console.log(inp.value);
 	out.innerHTML = "";
+	if(inp.value.length === 0){
+		var p = document.createElement("p");
+		p.classList.add("center");
+		p.innerHTML = "Please enter a food.";
+		out.appendChild(p);
+		return;
+	}
 	var done = 0;
 	floop:
 	for(var i = 0; i < jsonKeys.length && done < nDisp; i++){
@@ -28,6 +35,12 @@ function updInp(evt){
 		}
 		createFoodSelector(i);
 		done++;
+	}
+	if(done == 0){
+		var p = document.createElement("p");
+		p.classList.add("center");
+		p.innerHTML = "There are no foods in the database that match your query.";
+		out.appendChild(p);
 	}
 }
 function selectFood(id){
