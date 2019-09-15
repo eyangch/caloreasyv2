@@ -1,9 +1,10 @@
 const nDisp = 5;
 const fPadd = 1;
 
-function plusAmount(n){
-	var cal = Number(localStorage.getItem("cal"));
-	localStorage.setItem("cal", (cal+n).toFixed(1));
+function plusAmount(n1, n2){
+	var dat = JSON.parse(localStorage.getItem("data"));
+	dat.unshift([n1, n2]);
+	localStorage.setItem("data", JSON.stringify(dat));
 }
 var inp;
 var out;
@@ -44,7 +45,7 @@ function updInp(evt){
 	}
 }
 function selectFood(id){
-	plusAmount(jsonStuff[jsonKeys[id]]["cal"]);
+	plusAmount(jsonKeys[id], jsonStuff[jsonKeys[id]]);
 	window.location.href = "calorieTracker.html";
 }
 function createFoodSelector(id){

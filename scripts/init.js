@@ -1,6 +1,6 @@
-var x = localStorage.getItem("cal");
+var x = localStorage.getItem("data");
 if(x === null){
-	localStorage.setItem("cal", 0);
+	localStorage.setItem("data", JSON.stringify([]));
 }else{
 	console.log(x);
 }

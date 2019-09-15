@@ -5,10 +5,15 @@ window.onload = function(){
 
 function updCal(){
 	var calPlace = document.getElementById("calamount");
-	calPlace.innerHTML = localStorage.getItem("cal");
+	var rawcal = JSON.parse(localStorage.getItem("data"));
+	var calamount = 0;
+	for(var i = 0; i < rawcal.length; i++){
+		calamount += rawcal[i][1]["cal"];
+	}
+	calPlace.innerHTML = calamount;
 }
 
 function reset(){
-	localStorage.setItem("cal", 0);
+	localStorage.setItem("data", JSON.stringify([]));
 	updCal();
 }
