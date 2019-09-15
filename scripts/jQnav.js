@@ -1,0 +1,1 @@
+$("#nav").load("https://eyangch.github.io/caloreasyv2/nav.html");
