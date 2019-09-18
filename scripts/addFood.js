@@ -73,7 +73,8 @@ function createFoodSelector(id){
 	dv.appendChild(p2);
 	out.appendChild(dv);
 }
-function uJson(){
+function uJson(data){
+	console.log(data);
 	jsonStuff = JSON.parse(this.responseText);
 	jsonKeys = Object.keys(jsonStuff);
 	inp = document.getElementById("inp");

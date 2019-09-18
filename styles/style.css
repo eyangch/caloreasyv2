@@ -25,11 +25,11 @@
 	border: 3px solid black;
 }
 .flexTrack > .d1{
-	width: 70%;
+	width: 85%;
 	height: 70%;
 }
 .flexTrack > .d2{
-	width: 30%;
+	width: 15%;
 	height: 70%;
 }
 .flexTrack > .d3{
@@ -47,6 +47,10 @@
 	flex-direction: column;
 	align-items: center;
 }
+.flexTrack > .dv3{
+	width: 100%;
+	height: 80%;
+}
 .vertcenter{
 	position: absolute;
 	top: 50%;
@@ -62,6 +66,9 @@
 .grad2{
 	background: linear-gradient(to top right, LightSkyBlue, LightBlue);
 }
+.grad3{
+	background: linear-gradient(to bottom left, LightGreen, Lime);
+}
 .adjustfont{
 	font-size: 5vw;
 }
@@ -70,4 +77,10 @@
 }
 .divFood:hover{
 	background-color: LightSkyBlue;
+}
+.spanNutr{
+	font-size:20px;
+	padding: 2px;
+	margin: 2px;
+	border: 1px solid black;
 }
