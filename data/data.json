@@ -59,6 +59,16 @@
         "sug": 0.1,
         "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/340449/nutrients"
     },
+    "seaweed, roasted": {
+        "amount": 4,
+        "cal": 25,
+        "carb": 1,
+        "fat": 1.5,
+        "fib": 1,
+        "prot": 1,
+        "sug": 0,
+        "url": "N/A"
+    },
     "snapper": {
         "amount": 170,
         "cal": 218,
