@@ -73,6 +73,16 @@ output = json.dumps(
         "sug": 0,
         "prot": 44.7,
         "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/173699/nutrients"
+    },
+    "seaweed, roasted": {
+        "amount": 4,
+        "cal": 25,
+        "fat": 1.5,
+        "carb": 1,
+        "fib": 1,
+        "sug": 0,
+        "prot": 1,
+        "url": "N/A"
     }
 }, sort_keys = True, indent = 4)
 
