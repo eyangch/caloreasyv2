@@ -18,7 +18,6 @@ class AImodel{
 		this.model.summary();
 	}
 	predictModel(inp){
-		inp = tf.tensor(inp);
 		const d = tf.scalar(255); // origionally 0-255
 		inp = inp.div(d); // turn in to 0-1
 		inp = inp.reshape([-1, predImgSize, predImgSize, 3]);
@@ -119,6 +118,8 @@ var canvNR = document.getElementById("wccNR");
 var ctxNR = canvNR.getContext("2d");
 var pred = document.getElementById("pred");
 var ctxP = pred.getContext("2d");
+var bgrc = document.getElementById("bgr");
+var ctxBGR = bgrc.getContext("2d");
 
 var stats = document.getElementById("status");
 
@@ -149,12 +150,24 @@ function summonTheAI(){
 
 function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 	var it = 0;
-	for(var threshold = 10; threshold < 30; threshold += 10){
+	ctx2.lineWidth = 5;
+	playVid = false;
+	ctxNR.drawImage(canv2, 0, 0);
+	floodData = ctx.getImageData(0, 0, W, H).data;
+	var igD = ctxNR.getImageData(0, 0, origW, origH).data;
+	var igDproc = new Uint8ClampedArray(origH * origW * 4);
+	for(var j = 0; j < origW * origH; j++){
+		var red = j * 4;
+		igDproc[red] = igD[red + 2];
+		igDproc[red + 1] = igD[red + 1]; // cvt from RGB to BGR
+		igDproc[red + 2] = igD[red];
+		igDproc[red + 3] = igD[red + 3];
+	}
+	console.log(igDproc);
+	var imgDat = new ImageData(igDproc, 640, 480);
+	ctxBGR.putImageData(imgDat, 0, 0);
+	for(var threshold = 15; threshold < 36; threshold += 10){
 		it++;
-		ctx2.lineWidth = 5;
-		playVid = false;
-		ctxNR.drawImage(canv2, 0, 0);
-		floodData = ctx.getImageData(0, 0, W, H).data;
 		res = Srch(threshold, 4, 10, 10, W * H / 100);
 		for(var i = 0; i < res.length; i++){
 			var rx = res[i][0] * MP;
@@ -162,23 +175,8 @@ function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 			var rw = (res[i][2] - res[i][0]) * MP;
 			var rh = (res[i][3] - res[i][1]) * MP;
 			var done = false;
-			ctxP.drawImage(canvNR, rx, ry, rw, rh, 0, 0, predImgSize, predImgSize);
-			var igD = Array.from(ctxP.getImageData(0, 0, predImgSize, predImgSize).data);
-			var igDproc = Array(predImgSize);
-			for(var j = igD.length-1; j >= 0; j -= 4){
-				igD.splice(j, 1);
-			}
-			for(var j = 0; j < predImgSize; j++){
-				igDproc[j] = Array(predImgSize);
-				for(var k = 0; k < predImgSize; k++){
-					igDproc[j][k] = Array(3);
-					var red = j * predImgSize * 3 + k * 3;
-					igDproc[j][k][0] = igD[red + 2];
-					igDproc[j][k][1] = igD[red + 1]; // cvt from RGB to BGR
-					igDproc[j][k][2] = igD[red];
-				}
-			}
-			var op = classifier.predictModel(igDproc)[0][0];
+			ctxP.drawImage(bgrc, rx, ry, rw, rh, 0, 0, predImgSize, predImgSize);
+			var op = classifier.predictModel(tf.browser.fromPixels(pred))[0][0];
 			console.log(op);
 			if(op > 0.45){
 				console.log("ye");
