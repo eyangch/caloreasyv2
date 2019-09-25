@@ -132,16 +132,7 @@ video.addEventListener("play", function(){
 	var h = video.videoHeight;
 	canv2.width = w;
 	canv2.height = h;
-	canv.width = w / MP;
-	canv.height = h / MP;
-	canvNR.width = w;
-	canvNR.height = h;
-	bgrc.width = w;
-	bgrc.height = h;
-	origW = w;
-	origH = h;
-	W = w / MP;
-	H = h / MP;
+	ctx.scale(W / w, H / h);
 	function normal(){
 		if(playVid){
 			ctx2.clearRect(0, 0, origW, origH);
