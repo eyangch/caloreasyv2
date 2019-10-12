@@ -46,9 +46,9 @@ function stop(){
 
 function start(){
 Quagga.init({
-		numOfWorkers: 4,
+		numOfWorkers: 2,
 		locator: {
-			patchSize: "x-large",
+			patchSize: "large",
 			halfSample: false
 		},
 		inputStream: {

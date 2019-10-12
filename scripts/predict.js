@@ -121,6 +121,8 @@ var ctxP = pred.getContext("2d");
 var bgrc = document.getElementById("bgr");
 var ctxBGR = bgrc.getContext("2d");
 
+var objShow = document.getElementById("objShow");
+
 var stats = document.getElementById("status");
 
 var floodData;
@@ -151,6 +153,7 @@ function summonTheAI(){
 function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 	var it = 0;
 	ctx2.lineWidth = 5;
+    ctx2.font = "25px Arial";
 	playVid = false;
 	ctxNR.drawImage(canv2, 0, 0);
 	floodData = ctx.getImageData(0, 0, W, H).data;
@@ -166,6 +169,7 @@ function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 	console.log(igDproc);
 	var imgDat = new ImageData(igDproc, 640, 480);
 	ctxBGR.putImageData(imgDat, 0, 0);
+    var top = [[0, 0, 0, 0, 0]];
 	for(var threshold = 15; threshold < 36; threshold += 10){
 		it++;
 		res = Srch(threshold, 4, 10, 10, W * H / 100);
@@ -178,23 +182,86 @@ function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 			ctxP.drawImage(bgrc, rx, ry, rw, rh, 0, 0, predImgSize, predImgSize);
 			var op = classifier.predictModel(tf.browser.fromPixels(pred))[0][0];
 			console.log(op);
-			if(op > 0.45){
-				console.log("ye");
-				ctx2.strokeRect(rx, ry, rw, rh);
-			}
+            for(var j = 0; j < top.length; j++){
+                if(op > top[j][0]){
+                    top[j][0] = op;
+                    top[j][1] = rx;
+                    top[j][2] = ry;
+                    top[j][3] = rw;
+                    top[j][4] = rh;
+                    break;
+                }
+            }
 		}
 	}
+    dispObj(top);
 	stats.innerHTML = "Done!";
+}
+
+function plusAmount(n1, n2){
+	var dat = JSON.parse(localStorage.getItem("data"));
+	dat.unshift([n1, n2]);
+	localStorage.setItem("data", JSON.stringify(dat));
+}
+
+function dispObj(top){
+    var nb = 0;
+    objShow.innerHTML = "";
+    for(var i = 0; i < top.length; i++){
+        if(top[i][0] < 0.5){
+            continue;
+        }
+        nb++;
+        ctx2.fillText("Apple", top[i][1] + 5, top[i][2] + 25);
+        ctx2.strokeRect(top[i][1], top[i][2], top[i][3], top[i][4]);
+        var obj = document.createElement("div");
+        obj.style.cssText = "height: 30%; width: " + (top[i][0] * 100) + "%; background-color: LightBlue; opacity: 0.7; text-align: center; margin-top: 5%";
+        obj.addEventListener("mouseover", function(event){obj.style.opacity = "1";});
+        obj.addEventListener("mouseleave", function(event){obj.style.opacity = "0.7";});
+        obj.addEventListener("click", function(event){selectFood("apple");});
+        obj.innerHTML = "<h3>" + (top[i][0] * 100).toFixed(0) + "% Apple</h3>";
+        objShow.appendChild(obj);
+    }
+    if(nb === 0){
+        var obj = document.createElement("div");
+        obj.style.cssText = "height: 90%; width: 100%; background-color: LightBlue; opacity: 0.7; text-align: center; margin-top: 5%";
+        obj.addEventListener("mouseover", function(event){obj.style.opacity = "1";});
+        obj.addEventListener("mouseleave", function(event){obj.style.opacity = "0.7";});
+        obj.addEventListener("click", function(event){selectFood("none");});
+        obj.innerHTML = "<h3>No food found in image.</h3>";
+        objShow.appendChild(obj);
+    }
+}
+
+function selectFood(id){
+    if(id !== "none"){
+        plusAmount(id, jsonStuff[id]);
+    }
+	window.location.href = "calorieTracker.html";
 }
 
 function resetPV(){
 	stats.innerHTML = "";
 	playVid = true;
+    canv2.hidden = false;
+    objShow.innerHTML = "";
 }
 
 window.onload = function(){
-	navigator.mediaDevices.getUserMedia({ audio: false, video: true }).then(function(stream){
+	navigator.mediaDevices.getUserMedia({audio: false, video: true}).then(function(stream){
 		video.srcObject = stream;
 		video.onloadedmetadata = function(e) {video.play()};
 	});
+    var xhr = new XMLHttpRequest();
+	xhr.addEventListener("load", uJson);
+	xhr.open("GET", "https://eyangch.github.io/caloreasyv2/data/data.json");
+	xhr.send();
+}
+
+var jsonStuff;
+var jsonKeys;
+
+function uJson(data){
+	jsonStuff = JSON.parse(this.responseText);
+	jsonKeys = Object.keys(jsonStuff);
 }

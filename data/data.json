@@ -49,6 +49,16 @@
         "sug": 3.7,
         "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/338466/nutrients"
     },
+    "guava": {
+        "amount": 82,
+        "cal": 55.8,
+        "carb": 11.7,
+        "fat": 0.8,
+        "fib": 4.4,
+        "prot": 2,
+        "sug": 7.3,
+        "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/341568/nutrients"
+    },
     "rice": {
         "amount": 118,
         "cal": 152,

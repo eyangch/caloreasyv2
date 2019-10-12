@@ -7,9 +7,6 @@
 		<link rel="stylesheet" href="styles/style.css">
 		<link rel="stylesheet" href="styles/barcode.css">
 		<script src="scripts/init.js"></script>
-		<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-		<script src="https://serratus.github.io/quaggaJS/examples/js/quagga.min.js"></script>
-		<script src="scripts/barcode.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
 		<style>
 			.padd{
@@ -21,19 +18,23 @@
 		</style>
 	</head>
 	<body>
-		<div class="fillpage grad3">
+		<div class="fillpages grad3">
 			<div id="nav"></div>
 			<div class="padd">
 				<p id="debug">R-CNN Object Detection</p>
+                <button type="button" class="btn btn-success" onclick="summonTheAI()">Predict!</button>
+                <button type="button" class="btn btn-danger" onclick="resetPV()">Reset</button>
+                <p id="status"></p>
 				<video id="wc" hidden></video>
-				<canvas id="wcc" width="640", height="480"></canvas>
+                <div class="rel">
+				    <canvas id="wcc" class="overlay" width="640" height="480"></canvas>
+                    <div id="objShow" class="overlay" class="flexCol" width="640" height="480">
+                    </div>
+                </div>
 				<canvas id="wccNR" width="640", height="480" hidden></canvas>
 				<canvas id="wcc2" width="64", height="48" hidden></canvas>
 				<canvas id="pred" width="96", height="96" hidden></canvas>
 				<canvas id="bgr" width="640" height="480" hidden></canvas>
-				<button onclick="summonTheAI()">Predict!</button>
-				<button onclick="resetPV()">Reset</button>
-				<p id="status"></p>
 			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

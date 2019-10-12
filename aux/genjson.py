@@ -83,6 +83,16 @@ output = json.dumps(
         "sug": 0,
         "prot": 1,
         "url": "N/A"
+    },
+    "guava": {
+        "amount": 82,
+        "cal": 55.8,
+        "fat": 0.8,
+        "carb": 11.7,
+        "fib": 4.4,
+        "sug": 7.3,
+        "prot": 2,
+        "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/341568/nutrients"    
     }
 }, sort_keys = True, indent = 4)
 
