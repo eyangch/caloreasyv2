@@ -24,7 +24,8 @@ function updCal(){
 		carbamount += rawdat[i][1]["carb"];
 		sugamount += rawdat[i][1]["sug"];
 		protamount += rawdat[i][1]["prot"];
-		if(i <= 6){					document.getElementById("prevFood").append(createFoodSelector(rawdat[i][0], rawdat[i][1]));
+		if(i <= 6){
+			document.getElementById("prevFood").append(createFoodSelector(rawdat[i][0], rawdat[i][1]));
 		}
 	}
 	calPlace.innerHTML = calamount.toFixed(1);
