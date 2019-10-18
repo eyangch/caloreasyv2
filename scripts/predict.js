@@ -12,7 +12,7 @@ class AImodel{
 		this.model = tf.sequential();
 	}
 	async init(){
-		this.model = await tf.loadLayersModel("https://eyangch.github.io/caloreasyv2/aux/model.json");
+		this.model = await tf.loadLayersModel("https://eyangch.github.io/caloreasyv2/other/model.json");
 	}
 	initAux(){
 		this.model.summary();
