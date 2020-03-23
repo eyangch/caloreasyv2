@@ -93,6 +93,16 @@ output = json.dumps(
         "sug": 7.3,
         "prot": 2,
         "url": "https://fdc.nal.usda.gov/fdc-app.html#/food-details/341568/nutrients"    
+    },
+    "sardines in olive oil": {
+        "amount": 85,
+        "cal": 200,
+        "fat": 12,
+        "carb": 0,
+        "fib": 0,
+        "sug": 0,
+        "prot": 22,
+        "url": "N/A"    
     }
 }, sort_keys = True, indent = 4)
 
