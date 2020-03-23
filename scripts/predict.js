@@ -170,7 +170,7 @@ function actuallyDoStuffHereCuzJavascriptIsKindaWeird(){
 	var imgDat = new ImageData(igDproc, 640, 480);
 	ctxBGR.putImageData(imgDat, 0, 0);
     var top = [[0, 0, 0, 0, 0]];
-	for(var threshold = 15; threshold < 36; threshold += 10){
+	for(var threshold = 10; threshold < 46; threshold += 5){
 		it++;
 		res = Srch(threshold, 4, 10, 10, W * H / 100);
 		for(var i = 0; i < res.length; i++){
